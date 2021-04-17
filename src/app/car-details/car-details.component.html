@@ -1,0 +1,135 @@
+<section id="carDetailsComponent">
+<body>
+
+  <div class="body row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-1 mt-1">
+              <span class="material-icons">directions_car</span>
+            </div>
+            <div class="col-10">
+              <h4 class="card-title">
+                Car Details
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form class="form-body">
+            <div class="col-12 col-md-12 py-2">
+              <div class="col-12">
+                Plate Number
+              </div>
+              <div class="col-12">
+                <input class="form-control input-md mt-1" required
+                     type="text" maxlength="50">
+              </div>
+            </div>
+            <div class="col-12 col-md-12 py-2">
+              <div class="col-12 py-2">
+               Do you made any Claims in last 5 years?
+              </div>
+              <div class="col-12 ml-2">
+                <div class="col-2 col-sm-2 ">
+                  <input class="form-check-input"
+                         type="radio" name="radioNoLabel"
+                         id="radioNoLabel1" value="radioNoLabel1">
+                 <label for="radioNoLabel1">Yes</label>
+                </div>
+              </div>
+              <div class="col-12 ml-2">
+                <div class="col-2 col-sm-2 ">
+                  <input class="form-check-input"
+                         type="radio" name="radioNoLabel"
+                         id="radioNoLabel2" value="radioNoLabel1">
+                  <label for="radioNoLabel1">No</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-12 py-3">
+              <div class="col-12">
+                How many Years do you have Driving Licence?
+              </div>
+              <div class="col-12 py-2 mr-2">
+                <div class="col-6 col-sm-6 ">
+                  <select class="custom-select" id="inlineFormCustomSelect1">
+                    <option value="" >Select Me</option>
+                    <option value="{{item}}" *ngFor="let item of years;">{{item}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-12 py-2">
+              <div class="col-12">
+                Car Make
+              </div>
+              <div class="col-12 py-2 mr-2">
+                <div class="col-6 col-sm-6 ">
+                  <select class="custom-select" id="inlineFormCustomSelect2" [(ngModel)]="carMakeSelected" (ngModelChange)="getModelList()" name="carMakeSelected" ngDefaultControl>
+                    <option [ngValue]="item" *ngFor="let item of carMake;" >{{item}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-12 py-2">
+              <div class="col-12">
+                Car model
+              </div>
+              <div class="col-12 py-2 mr-2">
+                <div class="col-6 col-sm-6 ">
+                  <select class="custom-select" id="inlineFormCustomSelect3" *ngIf="carModels!=null" ngDefaultControl>
+                    <option  [ngValue]="item" *ngFor="let item of carModels;" >{{item}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-12 py-2">
+              <div class="col-12">
+                Car manufacturer date
+              </div>
+              <div class="col-12">
+                <form class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd"
+                             name="dp" [(ngModel)]="model" ngbDatepicker [footerTemplate]="footerTemplate"
+                             [placement]="placement" #d="ngbDatepicker">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-info calendar material-icons " (click)="d.toggle()"
+                                type="button">date_range
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <hr>
+
+            <div class="col-12 col-md-12 py-2 ">
+              <div class="col-3 col-md-3 float-left">
+                <button class="btn btn-primary" (click)="previousPage()">Back</button>
+              </div>
+              <div class="col-3 col-md-3 float-right">
+                <button class="btn btn-primary" (click)="nextPage()">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</section>
+
+<ng-template #footerTemplate>
+  <hr class="my-0">
+  <button class="btn btn-primary btn-sm m-2 float-left" (click)="model = today; d.close()">Today</button>
+  <button class="btn btn-secondary btn-sm m-2 float-right" (click)="d.close()">Close</button>
+</ng-template>
+

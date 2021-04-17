@@ -1,0 +1,87 @@
+<ngx-spinner></ngx-spinner>
+<section id="PersonalDetailsComponent">
+  <body>
+  <div class="body row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-1 mt-1">
+              <span class="material-icons">face</span>
+            </div>
+            <div class="col-10">
+              <h4 class="card-title">
+                Personal Details
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="card-body py-4">
+          <form class="form-body">
+            <div class="col-12 col-md-12 py-2">
+              <div class="col-12">
+                First Name
+              </div>
+              <div class="col-12">
+                <input class="form-control input-md mt-1"  required
+                       type="text" maxlength="50">
+              </div>
+            </div>
+            <div class="col-12 col-md-12 py-2">
+              <div class="col-12">
+                Last Name
+              </div>
+              <div class="col-12">
+                <input class="form-control input-md mt-1"  required
+                       type="text" maxlength="50">
+              </div>
+            </div>
+            <div class="col-12 col-md-12 py-2">
+              <div class="col-12">
+                Date of Birth
+              </div>
+              <div class="col-12">
+                <form class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd"
+                             name="dp" [(ngModel)]="model" ngbDatepicker [footerTemplate]="footerTemplate"
+                             [placement]="placement" #d="ngbDatepicker">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-info calendar material-icons " (click)="d.toggle()"
+                                type="button">date_range
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-12 col-md-12 py-2">
+              <div class="col-12">
+                Email
+              </div>
+              <div class="col-12">
+                <input class="form-control input-md mt-1" required
+                       type="text" maxlength="50">
+              </div>
+            </div>
+            <hr>
+            <div class="col-12 col-md-12 py-2 ">
+              <div class="col-3 col-md-3 float-right">
+                <button class="btn btn-primary" (click)="nextPage()">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</section>
+
+<ng-template #footerTemplate>
+  <hr class="my-0">
+  <button class="btn btn-primary btn-sm m-2 float-left" (click)="model = today; d.close()">Today</button>
+  <button class="btn btn-secondary btn-sm m-2 float-right" (click)="d.close()">Close</button>
+</ng-template>
